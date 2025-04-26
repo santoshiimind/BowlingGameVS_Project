@@ -40,14 +40,36 @@ int Player::getTotalScore() const {
     return totalScore;
 }
 
+int Player::getFrameCount() const
+{
+     return frames.size();
+}
+
 BowlingGame::BowlingGame(const string& playerName) : player(playerName) {}
 
 void BowlingGame::addFrame(int roll1, int roll2, int bonusRoll) {
-    if (roll1 < 0 || roll2 < 0 || bonusRoll < 0 || roll1 + roll2 > 10) {
-        throw invalid_argument("Invalid pin count for a frame");
+    if (roll1 < 0 || roll2 < 0 || bonusRoll < 0) {
+        throw invalid_argument("Negative pins are not allowed");
     }
+
+    int currentFrame = player.getFrameCount();
+
+    if (currentFrame >= 10) {
+        throw invalid_argument("Cannot add more than 10 frames");
+    }
+
+    // For first 9 frames, validate total pin count (unless it's a strike)
+    if (currentFrame < 9) {
+        if (roll1 != 10 && (roll1 + roll2 > 10)) {
+            throw invalid_argument("Invalid pin count in a frame");
+        }
+    }
+
+    // 10th frame: no total pin limit due to bonus rolls
+
     player.addFrame(Frame(roll1, roll2, bonusRoll));
 }
+
 
 int BowlingGame::getFinalScore() const {
     return player.getTotalScore();

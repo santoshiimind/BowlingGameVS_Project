@@ -26,6 +26,7 @@ public:
     Player(const string& playerName);
     void addFrame(const Frame& frame);
     int getTotalScore() const;
+    int getFrameCount() const;
 };
 
 class BowlingGame {

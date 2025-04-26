@@ -18,6 +18,11 @@ This project is a **console-based Bowling Game scoring system** developed in C++
 - **Player**: Stores frames and computes total score
 - **BowlingGame**: Manages the game and player actions
 
+### 📋 UML Class Diagram
+
+<img width="396" alt="Bowling Game Scoring System drawio" src="https://github.com/user-attachments/assets/34ac8165-5ac8-4ee9-acd4-80c061c119d3" />
+
+
 ### 🧪 Test Cases Included
 
 - Normal frames (no spares/strikes)
